@@ -1,0 +1,241 @@
+{
+	"variables": [],
+	"info": {
+		"name": "icash-delegate-stub",
+		"_postman_id": "bf479e56-e759-d31e-8df7-bad0d16bf003",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"url": "http://localhost:3000/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"password\",\n  \"username\": \"user20\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"url": "http://localhost:3000/api/logout",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMiIsImlzcyI6Im15LWF3ZXNvbWUtd2Vic2l0ZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1Mzc2ODMzOTl9.tMzV0_vqMRKYQfz-_hN3Hn2wa7fFY3c3OT5XZULJgeg",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"password\",\n  \"username\": \"user2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"url": "http://localhost:3000/api/signup",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"password\",\n  \"delegate_type\": \"delegate\",\n  \"username\": \"user20\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Admin : updatedelegate",
+			"request": {
+				"url": "http://localhost:3000/api/updatedelegate",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMjAiLCJpc3MiOiJteS1hd2Vzb21lLXdlYnNpdGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE1Mzc3OTAxNzcsImV4cCI6MTUzNzc5MDQ3N30.SZZCn-GrVl4Gm6LCe9AZZTSQfCLtp99bxMVy5AKmOwY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"password\",\n  \"username\": \"user2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Admin : removedelegate",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/api/removedelegate?delegate_address=0xb93A2776fAdb7471B76fC96Ae22673c965fe3325",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"removedelegate"
+					],
+					"query": [
+						{
+							"key": "delegate_address",
+							"value": "0xb93A2776fAdb7471B76fC96Ae22673c965fe3325",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMiIsImlzcyI6Im15LWF3ZXNvbWUtd2Vic2l0ZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1Mzc3NzM2NjksImV4cCI6MTUzNzc3Mzk2OX0.1S_cW3MqgKK-IvSmylQ6BcMX7EoyiANPcvOp5K0u6tY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Admin : Get All delegates",
+			"request": {
+				"url": "http://localhost:3000/api/delegates",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMjAiLCJpc3MiOiJteS1hd2Vzb21lLXdlYnNpdGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE1Mzc3OTAxNzcsImV4cCI6MTUzNzc5MDQ3N30.SZZCn-GrVl4Gm6LCe9AZZTSQfCLtp99bxMVy5AKmOwY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"password\",\n  \"username\": \"user2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Admin : delegate by address",
+			"request": {
+				"url": "http://localhost:3000/api/delegate/0xb93A2776fAdb7471B76fC96Ae22673c965fe3325",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMiIsImlzcyI6Im15LWF3ZXNvbWUtd2Vic2l0ZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1Mzc3NzIyMTIsImV4cCI6MTUzNzc3MjUxMn0.eUDcC5HTW2ZVlzYngsXc82-n0ha76Ia7BZU5Yqh7fac",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"password\",\n  \"username\": \"user2\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User : register",
+			"request": {
+				"url": "http://localhost:3000/api/register",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMjAiLCJpc3MiOiJteS1hd2Vzb21lLXdlYnNpdGUuY29tIiwicm9sZSI6ImRlbGVnYXRlIiwiaWF0IjoxNTM3OTMwNjQwLCJleHAiOjE1Mzc5MzA5NDB9.oDp681AMOI_RkGkvSQvCwOryDYHsDLKv0gTY3X9hjNM",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"first_name\",\n  \"last_name\": \"last_name\",\n  \"dob\": \"2087-03-06T10:01:28.935Z\",\n  \"primary_country\": \"England\",\n  \"delegate_address\": \"0xb93A2776fAdb7471B76fC96Ae22673c965fe2000\",\n  \"screen_name\": \"screen_name\",\n  \"expertise\": \"technology\",\n  \"availability\": \"BST\",\n  \"kyc_reference_id\": \"20\",\n  \"kyc_provider\": \"shuftipro\",\n  \"stake\": \"25%\",\n  \"wallet_address\": \"0xb93A2776fAdb7471B76fC96Ae22673c965fe3325\",\n  \"delegate_state\": \"register\",\n  \"date_range\": \"17/09/2018-17/09/2019 \",\n  \"timescale\": \"timescale\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User : unregister",
+			"request": {
+				"url": "http://localhost:3000/api/unregister",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMjAiLCJpc3MiOiJteS1hd2Vzb21lLXdlYnNpdGUuY29tIiwicm9sZSI6ImRlbGVnYXRlIiwiaWF0IjoxNTM3OTMxMTc5LCJleHAiOjE1Mzc5MzE0Nzl9.m4DJoJRi2LX35B5cAKuuVtPnpIikVeeTXmhOZ4AMF3k",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n  \"delegate_state\": \"unregister\"\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User : status",
+			"request": {
+				"url": "http://localhost:3000/api/status",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMjAiLCJpc3MiOiJpY2FzaC1kZWxlZ2F0ZS1hcHAiLCJyb2xlIjoiZGVsZWdhdGUiLCJpYXQiOjE1Mzc5MzIxMDMsImV4cCI6MTUzNzkzMjQwM30.D94Qos5md96qpPPkx_EqhIZPHj76748ooCWe8ewoJVI",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"first_name\",\n  \"last_name\": \"last_name\",\n  \"dob\": \"dob\",\n  \"primary_country\": \"England\",\n  \"delegate_address\": \"delegate_address\",\n  \"screen_name\": \"screen_name\",\n  \"expertise\": \"technology\",\n  \"availability\": \"BST\",\n  \"kyc_reference_id\": \"1\",\n  \"kyc_provider\": \"shuftipro\",\n  \"stake\": \"25%\",\n  \"wallet_address\": \"wallet_address\",\n  \"delegate_state\": \"inactive\",\n  \"date_range\": \"17/09/2018-17/09/2019 \",\n  \"timescale\": \"timescale\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

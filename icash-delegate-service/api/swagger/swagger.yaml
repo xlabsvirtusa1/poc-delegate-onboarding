@@ -1,0 +1,438 @@
+---
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "Swagger JWT Example"
+host: "localhost:3000"
+basePath: "/api"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /login:
+    post:
+      tags:
+      - "login-register"
+      description: "Login to iCash delegate stub"
+      operationId: "loginPost"
+      parameters:
+      - in: "body"
+        name: "authentication"
+        required: true
+        schema:
+          $ref: "#/definitions/Authentication"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+        500:
+          description: "Server error occured'"
+          schema:
+            $ref: "#/definitions/Message"            
+      x-swagger-router-controller: "LoginRegister"
+  /logout:
+    get:
+      tags:
+      - "login-register"
+      description: "Logout from app"
+      operationId: "logoutGet"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      x-swagger-router-controller: "LoginRegister"
+  /signup:
+    post:
+      tags:
+      - "login-register"
+      description: "signup with a particular role"
+      operationId: "signupPost"
+      parameters:
+      - in: "body"
+        name: "authentication"
+        required: true
+        schema:
+          $ref: "#/definitions/Signup"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Token"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+        500:
+          description: "Server error occured'"
+          schema:
+            $ref: "#/definitions/Message"               
+      x-swagger-router-controller: "LoginRegister"
+  /register:
+    put:
+      tags:
+      - "delegate"
+      description: "register endpoint, only accessible to 'superdelegates' and 'delegates'"
+      operationId: "registerPut"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Delegate Onboard Model"
+        required: true
+        schema:
+          $ref: "#/definitions/Delegate"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Message"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      - "delegate"
+      x-swagger-router-controller: "Delegate"
+  /unregister:
+    put:
+      tags:
+      - "delegate"
+      description: "unregister endpoint, only accessible to 'superdelegates' and 'delegates'"
+      operationId: "unregisterPut"
+
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Message"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      - "delegate"
+      x-swagger-router-controller: "Delegate"
+  /status:
+    get:
+      tags:
+      - "delegate"
+      description: "Protected endpoint, only accessible to 'superdelegates' and 'delegates'"
+      operationId: "statusGet"
+      responses:
+        200:
+          description: "state and info of delegate from icash platform"
+          schema:
+            $ref: "#/definitions/Message"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      - "delegate"
+      x-swagger-router-controller: "Delegate"
+  /delegates:
+    get:
+      tags:
+      - "superdelegate"
+      description: "Protected endpoint, only accessible to 'superdelegates'"
+      operationId: "delegatesGet"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ArrayOfDelegate"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      x-swagger-router-controller: "Admin"
+  /delegate/{delegate_address}:
+    get:
+      tags:
+      - "superdelegate"
+      description: "Protected endpoint, only accessible to 'superdelegates'"
+      operationId: "delegateGet"
+      parameters:
+      - name: "delegate_address"
+        in: "path"
+        description: "delegate_address of delegate"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/DelegateAdminView"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      x-swagger-router-controller: "Admin"
+  /updatedelegate/{delegate_address}:
+    put:
+      tags:
+      - "superdelegate"
+      description: "Protected endpoint, only accessible to 'superdelegates'"
+      operationId: "updatedelegatePut"
+      parameters:
+      - name: "delegate_address"
+        in: "path"
+        description: "delegate_address of delegate"
+        required: true
+        type: "string"      
+      - in: "body"
+        name: "body"
+        description: "enter details to update"
+        required: true
+        schema:
+          $ref: "#/definitions/DelegateAdminView"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Message"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      x-swagger-router-controller: "Admin"
+  /removedelegate:
+    delete:
+      tags:
+      - "superdelegate"
+      description: "Protected endpoint, only accessible to 'superdelegates'"
+      operationId: "removedelegateDelete"
+      parameters:
+      - name: "delegate_address"
+        in: "query"
+        description: "delegate_address of delegate"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Message"
+        403:
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Message"
+      security:
+      - Bearer: []
+      x-security-scopes:
+      - "superdelegate"
+      x-swagger-router-controller: "Admin"
+
+
+securityDefinitions:
+  Bearer:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+definitions:
+  ArrayOfDelegate:
+    type: "array"
+    items:
+      $ref: "#/definitions/DelegateAdminView"
+  Delegate:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      dob:
+        type: "string"
+      primary_country:
+        type: "string"
+      delegate_address:
+        type: "string"
+      screen_name:
+        type: "string"
+      expertise:
+        type: "string"
+      availability:
+        type: "string"
+      kyc_reference_id:
+        type: "string"
+      kyc_provider:
+        type: "string"
+      stake:
+        type: "string"
+      wallet_address:
+        type: "string"
+      delegate_state:
+        type: "string"
+      date_range:
+        type: "string"
+      timescale:
+        type: "string"
+    example:
+      first_name: "first_name"
+      last_name: "last_name"
+      dob: "dob"
+      primary_country: "England"
+      delegate_address: "delegate_address"
+      screen_name: "screen_name"
+      expertise: "technology"
+      availability: "BST"
+      kyc_reference_id: "1"
+      kyc_provider: "shuftipro"
+      stake: "25%"
+      wallet_address: "wallet_address"
+      delegate_state: "inactive"
+      date_range: "17/09/2018-17/09/2019 "
+      timescale: "timescale"
+  DelegateAdminView:
+    type: "object"
+    properties:
+      delegate_profile_id:
+        type: "string"
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+      dob:
+        type: "string"
+      primary_country:
+        type: "string"
+      delegate_address:
+        type: "string"
+      delegate_type:
+        type: "string"
+      screen_name:
+        type: "string"
+      expertise:
+        type: "string"
+      availability:
+        type: "string"
+      createdAt:
+        type: "string"
+      updatedAt:
+        type: "string"
+      kyc_reference_id:
+        type: "string"
+      kyc_provider:
+        type: "string"
+      stake:
+        type: "string"
+      wallet_address:
+        type: "string"
+      delegate_state:
+        type: "string"
+      delegate_state_change:
+        type: "string"
+      adjudicate_categories:
+        type: "string"
+      reserved_expertise:
+        type: "string"
+      reserved_categories:
+        type: "string"
+      date_range:
+        type: "string"
+      timescale:
+        type: "string"
+    example:
+      wallet_address: "wallet_address"
+      date_range: "date_range"
+      kyc_reference_id: "kyc_reference_id"
+      delegate_type: "delegate_type"
+      reserved_categories: "reserved_categories"
+      primary_country: "primary_country"
+      delegate_address: "delegate_address"
+      last_name: "last_name"
+      availability: "availability"
+      adjudicate_categories: "adjudicate_categories"
+      expertise: "expertise"
+      delegate_state_change: "delegate_state_change"
+      stake: "stake"
+      createdAt: "createdAt"
+      kyc_provider: "kyc_provider"
+      delegate_profile_id: "delegate_profile_id"
+      screen_name: "screen_name"
+      dob: "dob"
+      delegate_state: "delegate_state"
+      timescale: "timescale"
+      first_name: "first_name"
+      updatedAt: "updatedAt"
+      reserved_expertise: "reserved_expertise"
+  Signup:
+    type: "object"
+    properties:
+      delegate_type:
+        type: "string"
+        example: "delegate"
+      username:
+        type: "string"
+        example: "username"
+      password:
+        type: "string"
+        example: "password"
+    example:
+      password: "password"
+      delegate_type: "delegate"
+      username: "username"
+  Authentication:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        example: "username"
+      password:
+        type: "string"
+        example: "password"
+    example:
+      password: "password"
+      username: "username"
+  Token:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+      delegate_type:
+        type: "string"
+    example:
+      token: "token"
+  Message:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+    example:
+      message: "message"
